@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage[active,tightpage]{preview}
+
+\usepackage{tikz}
+\usetikzlibrary{backgrounds,graphs}
+
+\definecolor{BaseGray}{RGB}{66,66,66} % rgb(66,66,66)
+
+\colorlet{SoftGray}{BaseGray!40}
+\colorlet{BackGray}{BaseGray!6}
+
+\tikzset{
+   Node-Block/.style={
+      draw=BaseGray,
+      fill=BaseGray,
+      minimum width=1.55cm,
+      minimum height=1cm,
+      text=white,
+      font=\bfseries,
+      text centered,
+      inner sep=0pt,
+      rounded corners=2mm,
+   },
+   Blob/.style={
+      draw=SoftGray,
+      fill=SoftGray,
+      minimum size=4mm,
+      text=white,
+      circle,
+      font=\bfseries,
+      text centered,
+      inner sep=0pt,
+      outer sep=2pt
+   },
+   ActiveBlob/.style={
+      Blob,
+      draw=BaseGray, fill=BaseGray
+   },
+   FunctionBack/.style={
+      fill=BackGray,
+      rounded corners=2mm,
+      rectangle
+   },
+   Link/.style={
+      draw=SoftGray,
+      line width=1.5pt,
+      line cap=round,
+      line join=round,
+      -%
+   },
+   FuncLink/.style={
+      Link,
+      draw=SoftGray,
+      dotted
+   }
+}
+
+\begin{document}
+\begin{preview}
+\begin{tikzpicture}
+   \node[Node-Block] (f1) at (0,0) {};
+
+   \scope[shift={(f1.south)},yshift=-1.33cm]
+
+   \node[Blob] (a) at (-1,0) {};
+   \node[Blob] (b) at (.5,-.25) {};
+   \node[ActiveBlob] (c) at (1.55,-1.35) {};
+   \node[Blob] (d) at (-0.5,-1.6) {};
+   \node[Blob] (e) at (1.8,.25) {};
+   \node[Blob] (f) at (-2.2,-1.5) {};
+
+   \graph[edges={Link}] {
+      (a) -> { (b), (c) } -> (d) -> (e) -> (a),
+      (f) -> { (a), (d) }
+   };
+
+   \pgfonlayer{background}
+   \fill[FunctionBack] ([xshift=-2mm,yshift=-2mm]f.south west) rectangle ([xshift=2mm,yshift=2mm]e.north east);
+   \coordinate (f1@top) at([yshift=2mm]0,0|-e.north);
+   \endpgfonlayer
+   \draw[FuncLink] (f1@top) -- (f1.south);
+   \endscope
+\end{tikzpicture}
+\end{preview}
+\end{document}
