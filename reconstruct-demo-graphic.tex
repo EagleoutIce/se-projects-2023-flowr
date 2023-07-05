@@ -10,10 +10,12 @@
 
 \begin{document}
 \begin{preview}
+\color{BaseGray}\sffamily
 \begin{forest}
    for tree={Blob,edge=Link,fit=band},
    % correct mid to be centered
-   [[[][][]][,before computing xy={s/.average={s}{siblings}}][[][[][]]]]
+   [,name=if[,name=gt[,name=3][,name=4]][,name=y,before computing xy={s/.average={s}{siblings}}][,name=plus[,name=z][,name=times[,name=5][,name=4b]]]]
+   \node[right] at(if.east) {if};
 \end{forest}
 \end{preview}
 \end{document}
