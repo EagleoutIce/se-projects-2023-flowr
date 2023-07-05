@@ -4,13 +4,16 @@
 \usepackage[active,tightpage]{preview}
 \def\PreviewBorder{5mm}
 
-\usepackage{config.tex}
+\input{config.tex}
+
+\usepackage{forest}
 
 \begin{document}
 \begin{preview}
-\begin{tikzpicture}
-   \node {X};
-
-\end{tikzpicture}
+\begin{forest}
+   for tree={Blob,edge=Link,fit=band},
+   % correct mid to be centered
+   [[[][][]][,before computing xy={s/.average={s}{siblings}}][[][[][]]]]
+\end{forest}
 \end{preview}
 \end{document}
