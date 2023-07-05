@@ -1,4 +1,4 @@
-@default_files = ('visualizer-demo-graphic');
+@default_files = ('visualizer-demo-graphic.tex', 'reconstruct-demo-graphic.tex');
 $pdf_mode = 1;
 $pdf_update_method = 1;
 $out_dir = 'build';

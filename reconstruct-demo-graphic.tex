@@ -1,0 +1,26 @@
+\errorcontextlines9999
+\documentclass{article}
+
+\usepackage[active,tightpage]{preview}
+\def\PreviewBorder{5mm}
+
+\usepackage{tikz}
+\usepackage{fontawesome}
+\usepackage{etoolbox}
+\usetikzlibrary{backgrounds,graphs}
+
+\definecolor{BaseGray}{RGB}{66,66,66} % rgb(66,66,66)
+
+\colorlet{SoftGray}{BaseGray!40}
+\colorlet{BackGray}{BaseGray!5}
+\colorlet{SoftTextGray}{BackGray!60!SoftGray}
+
+
+\begin{document}
+\begin{preview}
+\begin{tikzpicture}
+   \node {X};
+
+\end{tikzpicture}
+\end{preview}
+\end{document}
