@@ -1,23 +1,47 @@
 \errorcontextlines9999
 \documentclass{article}
 
-\usepackage[default]{FiraSans}
-
 \usepackage[active,tightpage]{preview}
 \def\PreviewBorder{5mm}
 
 \input{config.tex}
 
+\usepackage[default]{FiraSans}
+\usepackage{FiraMono}
+
 \usepackage{forest}
 
+\tikzset{Blob/.append style={minimum size=3mm}}
 \begin{document}
 \begin{preview}
 \color{BaseGray}%
 \begin{forest}
    for tree={Blob,edge=Link,fit=band},
    % correct mid to be centered
-   [,name=if[,name=gt[,name=3][,name=4]][,name=y,before computing xy={s/.average={s}{siblings}}][,name=plus[,name=z][,name=times[,name=5][,name=4b]]]]
-   \node[right] at(if.east) {if};
+   [,name=while[,name=gt[,ActiveBlob,name=x][,name=3]][,name={=},before computing xy={s/.average={s}{siblings}},[,name=xl][,name=2]][,name={=b}[,name=y][,name=mal[,name=4][,name=xb]]]]
+   \foreach \n/\anchor/\label in {
+      if/right/if,
+      gt/left/{>},
+      3/below/3,
+      4/below/4,
+      y/below/y,
+      plus/right/+,
+      z/below/z,
+      minus/right/-,
+      5/below/5,
+      4b/below/4
+   } {
+      \ifstrequal{\anchor}{below}{\def\Offset{2.25mm}}{\def\Offset{1.25mm}}
+      \node[\anchor=\Offset,font=\ttfamily\footnotesize] at(\n) {\label};
+   }
+
+   \node[above right=-7.5mm,yshift=-4mm,align=left,font=\ttfamily] at(current bounding box.south west) {%
+      % everything but an active listing processor :c
+      while(x > 3) \{\\
+      \qquad x = 2\\
+      \qquad y = 4 * x\\
+      \}
+   };
 \end{forest}
 \end{preview}
 \end{document}
