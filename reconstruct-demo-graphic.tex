@@ -19,7 +19,13 @@
 \begin{forest}
    for tree={Blob,edge=Link,fit=band},
    % correct mid to be centered
-   [,name=while[,name=gt[,ActiveBlob,name=x][,name=3]][,name={=},before computing xy={s/.average={s}{siblings}},[,ActiveBlob,name=xl][,ActiveBlob,name=2]][,name={=b}[,name=y][,name=mal[,name=4][,name=xb]]]]
+   [,name=while
+      [,name=gt[,ActiveBlob,name=x][,name=3]]%
+      [,name=block,% ,before computing xy={s/.average={s}{siblings}}
+         [,name={=}[,ActiveBlob,name=xl][,ActiveBlob,name=2]]
+         [,name={=b}[,name=y][,name=mal[,name=4][,name=xb]]]
+      ]
+   ]
    \foreach \n/\anchor/\label in {
       while/above/while,
       gt/left/>,
@@ -32,13 +38,14 @@
       y/below/y,
       mal/right/*,
       4/below/4,
-      xb/below/x
+      xb/below/x,
+      block/right/{\{\,\}}
    } {
       \ifstrequal{\anchor}{below}{\def\Offset{2.25mm}}{\def\Offset{1.25mm}}
       \node[\anchor=\Offset,font=\ttfamily\footnotesize] at(\n) {\label};
    }
    %
-   \node[above right=-7.5mm,yshift=-4mm,align=left,font=\ttfamily,SoftGray] at(current bounding box.south west) {%
+   \node[above right=-7.5mm,yshift=-2mm,align=left,font=\ttfamily,SoftGray] at(current bounding box.south west) {%
       % everything but an active listing processor :c
       while(\textcolor{BaseGray}{x} > 3) \{\\
       \qquad \textcolor{BaseGray}{x} = \textcolor{BaseGray}{2}\\
@@ -55,9 +62,9 @@
    \node (lt) at (0,0) {\usebox\LeftTree};
    \draw[Link,-Kite,SoftGray] ([xshift=3mm]lt.east) to[out=0,in=180] ++(2cm,5mm) coordinate (@r);
    \node[right=3mm,align=left,font=\ttfamily,BaseGray] at(@r.east) {%
-      while(x > 3) \{\\
+      while(x > 3) \textcolor{SoftGray}{\{}\\
       \qquad x = 2\\
-      \}
+      \textcolor{SoftGray}{\}}
    };
 \end{tikzpicture}
 \end{preview}
