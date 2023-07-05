@@ -1,0 +1,78 @@
+\documentclass[aspectratio=169,english,plain,c]{beamer}
+
+\usepackage{lib/beamer-themes/dividing-lines/beamerthemedividing-lines}
+
+\input{data/config.tex}
+\usepackage[bare]{lib/tikzpingus/tex/tikzpingus}
+
+\def\DoTitlepage{}%
+\def\DoEndpage{}%
+
+\title{SE-Projekte im WS 23/24 --- flowR}
+\subtitle{Statische Datenflusss-Analyse von R-Code}
+\author{Florian Sihler}
+\date{20.07.2023}
+
+\newsavebox\HappyPingu
+\savebox\HappyPingu{\tikz{\pingu[eyes wink,right wing wave,:mix-all=30!btdl@color@background]}}
+
+\begin{document}
+
+\begin{frame}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=3mm] (@flowr) at(current page.north east) {%
+      \includegraphics[width=2.5cm]{data/flowR.pdf}
+   };
+   % fake opacity
+   \fill[btdl@color@background,opacity=.5] (@flowr.north east) rectangle (@flowr.south west);
+   \node[below right,xshift=5mm] (@) at(current page.west) {%
+      \usebeamerfont{title}Titel%
+   };
+   \node[below right,font=\itshape\sbfamily,SoftGray] at (@.south west) {%
+      im Wintersemester 2023/24%
+   };
+   \node[above left=2.5mm,scale=.2] (@) at(current page.south east) {\quad\usebox\HappyPingu};
+   \node[above right=2.5mm,opacity=.55,scale=.2] at(current page.south west) {\includegraphics[height=\dimexpr0.7\ht\HappyPingu+0.7\dp\HappyPingu]{data/sp.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+\begin{tikzpicture}[overlay,remember picture]
+   % padding comes from preview border
+   \node[above left=0mm] at (current page.south east) {%
+      \includegraphics[width=.65\paperwidth]{build/visualizer-demo-graphic.pdf}
+   };
+   \node[below right=5mm,font=\sbfamily\Large] (@title) at(current page.north west) {%
+      Interaktive Visualisierung von Datenflussgraphen%
+   };
+   \node[below right,yshift=-5mm,text width=.33\paperwidth] at(@title.south west) {%
+      \begin{itemize}
+         \itemsep7.5pt
+         \item Interessante
+         \item Fakten
+         \item In
+         \item Bulletpoints
+      \end{itemize}
+   };
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below right] at (current page.north west) {%
+      \includegraphics[width=.65\paperwidth]{build/reconstruct-demo-graphic.pdf}
+   };
+   \node[above left=5mm,yshift=-1.5mm,font=\sbfamily\Large] (@title) at(current page.south east) {%
+      Rekonstruktion von Programm-Ausschnitten%
+   };
+   \node[above left,yshift=5mm,text width=.55\paperwidth] at(@title.north east) {%
+      \begin{itemize}
+         \item Richtig
+         \item Gute
+         \item Bulletpoints mit vielen Informationen
+         \item Super Duper
+      \end{itemize}
+   };
+\end{tikzpicture}
+\end{frame}
+\end{document}
