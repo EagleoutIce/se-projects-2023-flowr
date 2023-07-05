@@ -1,4 +1,4 @@
-@default_files = ('dataflow-graph.tex');
+@default_files = ('visualizer-demo-graphic');
 $pdf_mode = 1;
 $pdf_update_method = 1;
 $out_dir = 'build';

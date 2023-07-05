@@ -1,0 +1,319 @@
+\errorcontextlines9999
+\documentclass{article}
+
+\usepackage[active,tightpage]{preview}
+
+\usepackage{tikz}
+\usepackage{fontawesome}
+\usepackage{etoolbox}
+\usetikzlibrary{backgrounds,graphs}
+
+\definecolor{BaseGray}{RGB}{66,66,66} % rgb(66,66,66)
+
+\colorlet{SoftGray}{BaseGray!40}
+\colorlet{BackGray}{BaseGray!5}
+\colorlet{SoftTextGray}{BackGray!60!SoftGray}
+
+\tikzset{
+   FunctionDef/.style={
+      draw=BaseGray,
+      fill=BaseGray,
+      minimum width=1.55cm,
+      minimum height=1cm,
+      text=white,
+      font=\bfseries,
+      text centered,
+      inner sep=0pt,
+      rounded corners=1mm,
+      outer sep=2pt
+   },
+   Blob/.style={
+      draw=SoftGray,
+      fill=SoftGray,
+      minimum size=4mm,
+      text=white,
+      circle,
+      font=\bfseries,
+      text centered,
+      inner sep=0pt,
+      outer sep=2pt
+   },
+   Def/.style={
+      Blob,
+      rectangle, rounded corners=1mm
+   },
+   ActiveBlob/.style={
+      Blob,
+      draw=BaseGray, fill=BaseGray
+   },
+   FunctionBack/.style={
+      fill=BackGray,
+      % draw=SoftGray,
+      rounded corners=2mm,
+      rectangle
+   },
+   Link/.style={
+      draw=SoftGray,
+      line width=1.5pt,
+      line cap=round,
+      line join=round,
+      -%
+   },
+   FuncLink/.style={
+      Link,
+      draw=SoftGray,
+      dotted
+   },
+   Cursor/.style={
+      fill=BackGray,
+      draw=BaseGray,
+      line join=round,
+      line cap=round
+   },
+   Hover-Over/.style={
+      fill=BackGray,
+      draw=SoftGray,
+      opacity=.5,
+      draw opacity=1,
+      rounded corners=1mm,
+      line join=round,
+      line cap=round
+   },
+   Line-Of-Text/.style={
+      fill=#1,
+      draw=none,
+      rounded corners=1.5pt,
+      inner sep=1pt,
+      minimum width=1cm,
+      minimum height=6.5pt
+   },
+   Input-Base/.style={
+      fill=BackGray,
+      draw=SoftGray,
+      rounded corners=1mm,
+      inner sep=1pt,
+      minimum width=2cm,
+      minimum height=12pt
+   },
+   % code sub-styles
+   A/.style={Line-Of-Text=SoftTextGray},
+   B/.style={},
+   C/.style={Line-Of-Text=SoftGray}
+}
+
+\newcommand\Back[4][]{
+   \pgfonlayer{background}
+   \fill[FunctionBack,#1] ([xshift=-2mm,yshift=-2mm]#2.south west) rectangle ([xshift=2mm,yshift=2mm]#3.north east);
+   \coordinate (#4@north) at([yshift=2mm]0,0|-#3.north);
+   \coordinate (#4@west) at([xshift=-2.5mm]0,0-|#2.west);
+\endpgfonlayer
+}
+
+\begin{document}
+\begin{preview}
+\begin{tikzpicture}
+   \node[FunctionDef] (F) at (0,0) {};
+
+   \scope[shift={(F.south)},yshift=-1.5cm]
+      \node[Def] (a1) at (-1,0) {};
+      \node[Blob] (b1) at (.5,-.25) {};
+      \node[ActiveBlob] (c1) at (1.55,-1.35) {};
+      \node[Blob] (d1) at (-0.5,-1.6) {};
+      \node[Blob] (e1) at (1.8,.25) {};
+      \node[Blob] (f1) at (-2.2,-1.5) {};
+
+      \graph[edges={Link}] {
+         (a1) -> { (b1), (c1) } -> (d1) -> (e1) -> (a1),
+         (f1) -> { (a1), (d1) }
+      };
+
+      \Back{f1}{e1}{f1}
+
+      \draw[FuncLink] (f1@north) -- (F.south);
+   \endscope
+
+   \node[Blob] (a) at (2.5,0) {};
+   \node[Blob] (b) at (1.5,1) {};
+   \node[Blob] (c) at (3,2) {};
+   \node[Blob] (d) at (-2.5,0.5) {};
+   \node[Def] (e) at (-2.5,1.5) {};
+   \node[Blob] (f) at (-3,2.5) {};
+   \node[Blob] (g) at (-3.5,-1) {};
+   \node[Blob] (h) at (-3,-2.5) {};
+
+   \node[FunctionDef] (F2) at(5,-.5) {};
+   \node[Blob] (u) at(5.5,1) {};
+
+   \scope[shift={(F2.east)},xshift=1.5cm]
+
+      \node[Blob] (a2) at (0,1.15) {};
+      \node[Def] (b2) at (.75,1.85) {};
+      \node[Blob] (c2) at (-.5,-.85) {};
+
+      \node[Blob] (d2) at (1.33,0.25) {};
+      \node[FunctionDef] (e2) at (2,-.75) {};
+
+      \node[Blob] (f2) at (3.75,1.5) {};
+      \node[Blob] (g2) at (2.75,2.5) {};
+
+      \scope[shift=(e2.south), yshift=-1cm]
+         \node[ActiveBlob] (a3) at (-1,0) {};
+         \node[Blob] (b3) at (1,0) {};
+         \draw[Link] (a3) -- (b3);
+         \Back[white]{a3}{b3}{a3} % for coordinate
+      \endscope
+
+      \coordinate (ll) at ([yshift=-2mm]a3.south west-|c2.west);
+      \coordinate (ur) at (f2.north east|-g2.north);
+
+      \Back{ll}{ur}{e2}
+      \draw[FuncLink] (e2@west) -- (F2.east);
+
+      % draw inner later
+      \Back[white]{a3}{b3}{xx} % for the overlay :D
+      \draw[FuncLink] (a3@north) -- (e2.south);
+
+      \graph[edges={Link}] {
+         (a2) -> (b2) -> { (c2) , (d2) },
+         (d2) -> { (e2), (f2) },
+         (f2) -> (g2),
+         (c2) -> (a3)
+      };
+   \endscope
+
+   \graph[edges={Link}] {
+      (F) -> { (a), (b) },
+      (a) -> (e1),
+      (b) -> (c) -> (b2),
+      (b) -> (d) -> { (F), (e) },
+      (e) -> (f) -> (c),
+      (d) -> (g) -> (h) -> (f1),
+      (u) -> (F2)
+   };
+
+   \coordinate (cursor-pos) at ([xshift=1.65mm,yshift=2mm]F2.south west);
+   \draw[Cursor,rotate around={-30:(cursor-pos)}]  [rounded corners=2.25pt] (cursor-pos)  [rounded corners=2.25pt] -- ++(4pt,-9.5pt) [rounded corners=2pt] -- ++(-4pt,3pt) [rounded corners=2.25pt]-- ++(-4pt,-3pt) -- cycle;
+   \node[below right,xshift=1.25mm,Hover-Over,minimum width=1.25cm,minimum height=6mm] (hoverover) at(cursor-pos) {%
+
+   };
+   % \scope[opacity=.95,transparency group]
+      \fill[Line-Of-Text=SoftGray] ([shift={(2pt,-2pt)}]hoverover.north west) rectangle ++(7.5mm,-4pt);
+      \fill[Line-Of-Text=SoftTextGray] ([shift={(2pt,-7.5pt)}]hoverover.north west) rectangle ++(11mm,-3pt);
+      \fill[Line-Of-Text=SoftTextGray] ([shift={(2pt,-7.5pt-4.5pt)}]hoverover.north west) rectangle ++(8mm,-3pt);
+   % \endscope
+
+   % TODO: outsource window?
+   \coordinate (wul) at ([shift={(-5mm,6mm)}]current bounding box.north west);
+   \coordinate (wur) at ([shift={(5mm,6mm)}]current bounding box.north east);
+   \draw[thin,rounded corners=3pt,SoftGray] ([shift={(-5mm,-5mm)}]current bounding box.south west) rectangle (wur);
+   % just "overlay" the top :D
+   \filldraw[SoftGray] ([yshift=-1mm]wul) coordinate (@) -- (wur|-@) [rounded corners] |- ([yshift=2.5mm]wul) [sharp corners] -- cycle;
+
+   \fill[Line-Of-Text=BackGray] ([yshift=1.35mm,xshift=4pt]wul) rectangle ++(2cm,-1.27mm);
+   \node[above left,BackGray] at([yshift=-1.33mm,xshift=-1mm]wur) {\smash{\scalebox{.9}{\scriptsize\faAngleDown~~\faAngleUp~~\faTimesCircle}}};
+
+   \coordinate (root control window) at(current bounding box.south west);
+
+   \scope[shift={(current bounding box.south east)},shift={(-7cm,4.5mm)}]
+      \coordinate (wul) at (0,0);
+      \coordinate (wur) at (8.5,0);
+
+      \draw[thin,rounded corners=3pt,SoftGray,fill=white] (0,-5) rectangle (wur);
+
+      % code line
+      \draw[thin,BackGray] ([xshift=1cm,yshift=-1mm]wul) coordinate (@) -- (@|-0,-5);
+      % line numbers and code
+      \foreach[count=\i from 0] \Code in {
+         {1/A,0.5/A,5/C,2/A},
+         {1.5/B,3/A,0.5/A,2/A},
+         {},
+         {1.5/B,0.5/A,3/A},
+         {1/A},
+         {},
+         {5/A,0.5/A,2/A},%
+         {0.5/A,5/A,3/A,0.5/A,2/A,5.5/A},
+         {},
+         {1/C,0.5/A,1/A,0.5/A,1/A,0.5/A,0.15/B,0.5/A},
+         {1.5/B,3/A,0.5/A,1/C,2/A,1.5/A,1/C,1.5/A},
+         {1.5/B,0.75/A,0.5/A,1.5/A,0.5/A,1/A},
+         {1.5/B,3/A,0.5/A,2/A},
+         {1.5/B,2/A,0.5/A,2/A},
+         {1/A}%
+      } {
+         \ifnum\i<6 \def\Width{4mm} \else \def\Width{6mm} \fi
+         \fill[Line-Of-Text=BackGray] ([yshift=-1mm,xshift=8mm]wul|-0,-\i*0.33*10mm+1mm) rectangle ++(-\Width,-2mm);
+         \def\XShift{5}
+         \foreach \CW/\Style in \Code {
+            \ifstrequal{\Style}{B}{\def\RandomSuffix{0}}{\def\RandomSuffix{(rand*0.4mm+0.75mm)}}
+            \pgfmathsetmacro\w{3*\CW mm+\RandomSuffix}
+            \path[\Style] ([yshift=-1mm,xshift=1cm+\XShift pt]wul|-0,-\i*0.33*10mm+1mm) rectangle ++(\w pt,-2mm);
+
+            \pgfmathsetmacro{\XShift}{\XShift+\w pt+1.5mm}
+            \xdef\XShift{\XShift}
+         }
+      }
+
+      % slider
+      \draw[Line-Of-Text=SoftTextGray,rounded corners=.325mm] ([yshift=-4cm+5mm,xshift=-1mm]wur) rectangle ++(-.75mm,-1cm);
+
+      % just redraw the frame :D
+      \draw[thin,rounded corners=3pt,SoftGray] (0,-5) rectangle (wur);
+
+      \filldraw[SoftGray] ([yshift=-1mm]wul) coordinate (@) -- (wur|-@) [rounded corners] |- ([yshift=2.5mm]wul) [sharp corners] -- cycle;
+
+      \fill[Line-Of-Text=BackGray] ([yshift=1.35mm,xshift=4pt]wul) rectangle ++(1.66cm,-1.27mm);
+      \node[above left,BackGray] at([yshift=-1.33mm,xshift=-1mm]wur) {\smash{\scalebox{.9}{\scriptsize\faAngleDown~~\faAngleUp~~\faTimesCircle}}};
+
+   \endscope
+
+   % window for controls
+   \scope[shift={(root control window)},shift={(-1cm,-5mm)}]
+      \draw[thin,rounded corners=3pt,SoftGray,fill=white] (0,-4) rectangle ++(8.33cm,4cm);
+      \coordinate (wul) at (0,0);
+      \coordinate (wur) at (8.33,0);
+
+      \node[Input-Base,minimum width=6cm,below right=3mm] (slice-criterion-input) at (wul) {};
+      \fill[Line-Of-Text=SoftTextGray] ([yshift=1mm,xshift=4pt]slice-criterion-input.west) rectangle ++(1.25cm,-2mm);
+      \fill[Line-Of-Text=SoftTextGray] ([yshift=1mm,xshift=4pt+1.25cm+2mm]slice-criterion-input.west) rectangle ++(1cm,-2mm);
+
+      % frame stuff
+      \filldraw[SoftGray] ([yshift=-1mm]wul) coordinate (@) -- (wur|-@) [rounded corners] |- ([yshift=2.5mm]wul) [sharp corners] -- cycle;
+      \node[right=1mm,SoftGray,] at(slice-criterion-input.east) {\tiny\faChevronRight~~~~~\faPieChart~~\faUpload~~\faDownload};
+
+      % logging window
+      \draw[rounded corners=3pt,BackGray,fill=white] ([xshift=3mm,yshift=-1cm]wul) rectangle ([xshift=-3mm,yshift=-3.7cm]wur);
+
+      % log
+      \foreach[count=\i from 0] \Code in {
+         {1/A,2/A,6/A,1/B,3/A},
+         {1.5/B,3/A,2/A,2/A,1/A},
+         {1.5/B,2/A,3/A,1/A,2/A,3/A,1/A},
+         {1.5/B,4/A,1/A},
+         {1.5/B,3/A,2/A,2/A,1/A},
+         {1.5/B,3/A,1/A,4/A,1/A},
+         {},
+         {1/A,2/A,6/A},
+         {1/A,2/A,3/A,1.5/A,2.5/A},
+      } {
+         \def\XShift{5}
+         \foreach \CW/\Style in \Code {
+            \ifstrequal{\Style}{B}{\def\RandomSuffix{0}}{\def\RandomSuffix{(rand*0.4mm+0.75mm)}}
+            \pgfmathsetmacro\w{3*\CW mm+\RandomSuffix}
+            \path[\Style] ([yshift=-2.5mm-1cm,xshift=3.25mm+\XShift pt]wul|-0,-\i*0.28*10mm+1mm) rectangle ++(\w pt,-1.75mm);
+
+            \pgfmathsetmacro{\XShift}{\XShift+\w pt+1mm}
+            \xdef\XShift{\XShift}
+         }
+      }
+
+      % slider
+      \draw[Line-Of-Text=SoftTextGray,rounded corners=.325mm] ([yshift=-2cm+3mm,xshift=-4mm]wur) rectangle ++(-.75mm,-1cm);
+
+      % head
+      \fill[Line-Of-Text=BackGray] ([yshift=1.35mm,xshift=4pt]wul) rectangle ++(5mm,-1.27mm);
+      \fill[Line-Of-Text=BackGray] ([yshift=1.35mm,xshift=4pt+6.5mm]wul) rectangle ++(1cm,-1.27mm);
+      \node[above left,BackGray] at([yshift=-1.33mm,xshift=-1mm]wur) {\smash{\scalebox{.9}{\scriptsize\faAngleDown~~\faAngleUp~~\faTimesCircle}}};
+   \endscope
+\end{tikzpicture}
+\end{preview}
+\end{document}
