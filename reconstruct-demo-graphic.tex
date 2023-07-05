@@ -12,36 +12,53 @@
 \usepackage{forest}
 
 \tikzset{Blob/.append style={minimum size=3mm}}
-\begin{document}
-\begin{preview}
+
+\newsavebox\LeftTree
+\begin{lrbox}{\LeftTree}
 \color{BaseGray}%
 \begin{forest}
    for tree={Blob,edge=Link,fit=band},
    % correct mid to be centered
-   [,name=while[,name=gt[,ActiveBlob,name=x][,name=3]][,name={=},before computing xy={s/.average={s}{siblings}},[,name=xl][,name=2]][,name={=b}[,name=y][,name=mal[,name=4][,name=xb]]]]
+   [,name=while[,name=gt[,ActiveBlob,name=x][,name=3]][,name={=},before computing xy={s/.average={s}{siblings}},[,ActiveBlob,name=xl][,ActiveBlob,name=2]][,name={=b}[,name=y][,name=mal[,name=4][,name=xb]]]]
    \foreach \n/\anchor/\label in {
-      if/right/if,
-      gt/left/{>},
+      while/above/while,
+      gt/left/>,
+      x/below/x,
       3/below/3,
-      4/below/4,
+      =/right/=,
+      xl/below/x,
+      2/below/2,
+      =b/right/=,
       y/below/y,
-      plus/right/+,
-      z/below/z,
-      minus/right/-,
-      5/below/5,
-      4b/below/4
+      mal/right/*,
+      4/below/4,
+      xb/below/x
    } {
       \ifstrequal{\anchor}{below}{\def\Offset{2.25mm}}{\def\Offset{1.25mm}}
       \node[\anchor=\Offset,font=\ttfamily\footnotesize] at(\n) {\label};
    }
-
-   \node[above right=-7.5mm,yshift=-4mm,align=left,font=\ttfamily] at(current bounding box.south west) {%
+   %
+   \node[above right=-7.5mm,yshift=-4mm,align=left,font=\ttfamily,SoftGray] at(current bounding box.south west) {%
       % everything but an active listing processor :c
-      while(x > 3) \{\\
-      \qquad x = 2\\
+      while(\textcolor{BaseGray}{x} > 3) \{\\
+      \qquad \textcolor{BaseGray}{x} = \textcolor{BaseGray}{2}\\
       \qquad y = 4 * x\\
       \}
    };
 \end{forest}
+\end{lrbox}
+
+\begin{document}
+\begin{preview}
+\color{BaseGray}%
+\begin{tikzpicture}
+   \node (lt) at (0,0) {\usebox\LeftTree};
+   \draw[Link,-Kite,SoftGray] ([xshift=3mm]lt.east) to[out=0,in=180] ++(2cm,5mm) coordinate (@r);
+   \node[right=3mm,align=left,font=\ttfamily,BaseGray] at(@r.east) {%
+      while(x > 3) \{\\
+      \qquad x = 2\\
+      \}
+   };
+\end{tikzpicture}
 \end{preview}
 \end{document}
