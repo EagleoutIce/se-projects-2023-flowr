@@ -96,10 +96,10 @@
       (u) -> (F2)
    };
 
-   \coordinate (cursor-pos) at ([xshift=1.65mm,yshift=2mm]F2.south west);
-   \draw[Cursor,rotate around={-30:(cursor-pos)}]  [rounded corners=2.25pt] (cursor-pos)  [rounded corners=2.25pt] -- ++(4pt,-9.5pt) [rounded corners=2pt] -- ++(-4pt,3pt) [rounded corners=2.25pt]-- ++(-4pt,-3pt) -- cycle;
-   \node[below right,xshift=1.25mm,Hover-Over,minimum width=1.25cm,minimum height=6mm] (hoverover) at(cursor-pos) {%
-
+   \coordinate (cursor-pos) at ([xshift=-1.65mm,yshift=2mm]F2.south east);
+   \draw[Cursor,rotate around={28:(cursor-pos)}]  [rounded corners=2.25pt] (cursor-pos)  [rounded corners=2.25pt] -- ++(4pt,-9.5pt) [rounded corners=2pt] -- ++(-4pt,3pt) [rounded corners=2.25pt]-- ++(-4pt,-3pt) -- cycle;
+   \node[below left,xshift=-1mm,yshift=1.15mm,Hover-Over,minimum width=1.25cm,minimum height=6mm] (hoverover) at(cursor-pos) {%
+      %
    };
    % \scope[opacity=.95,transparency group]
       \fill[Line-Of-Text=SoftGray] ([shift={(2pt,-2pt)}]hoverover.north west) rectangle ++(7.5mm,-4pt);
