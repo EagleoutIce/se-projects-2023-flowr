@@ -201,7 +201,7 @@ cat("Product:", prod, "\n")
 \end{minted}
 \endAnimateCode
    };
-   \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\scriptsize\T{slice(\solGet{linenumbers}{\scriptsize10}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
+   \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\scriptsize\T{slice(\solGet{linenumbers}{\scriptsize\T{10}}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
    \node[below=5mm,font=\sbfamily\Large] at(current page.north) {Program-Slicing};
