@@ -38,7 +38,7 @@
       in the winter semester 2023/24%
    };
    \node[above left=2.5mm,yshift=-.65mm,scale=.2] (@) at(current page.south east) {\quad\usebox\HappyPingu};
-   \node[above right=2.5mm,opacity=.55,scale=.2] at(current page.south west) {\includegraphics[height=\dimexpr0.7\ht\HappyPingu+0.7\dp\HappyPingu]{data/sp.pdf}};
+   \node[above right=2.5mm,opacity=.55,scale=.2] at(current page.south west) {\href{https://www.uni-ulm.de/in/sp/}{\includegraphics[height=\dimexpr0.7\ht\HappyPingu+0.7\dp\HappyPingu]{data/sp.pdf}}};
 \end{tikzpicture}
 \end{frame}
 
@@ -83,16 +83,16 @@
    [[[][,phantom]][[[][,phantom]][]]]
 \end{forest}}}
 \newsavebox\DataFlow
-\setbox\DataFlow=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+\setbox\DataFlow=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!BaseGray}\begin{forest}
    for tree={Blob,edge=Link}
    [[[,name=a][,phantom]][,name=d[[,name=b][,phantom]][,name=c]]]
-   \draw[very thick,black,line cap=round] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+   \draw[Link,very thick,BaseGray,line cap=round] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
 \end{forest}}}
 \newsavebox\Slicing
-\setbox\Slicing=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+\setbox\Slicing=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!BaseGray}\begin{forest}
    for tree={Blob,edge=Link}
    [[[,name=a][,phantom]][,name=d[[,name=b,ActiveBlob,very thick][,phantom]][,name=c,ActiveBlob,very thick]]]
-   \draw[very thick,black,line cap=round,lightgray!80!black] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+   \draw[Link,very thick,line cap=round,BaseGray!80!gray] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
 \end{forest}}}
 \newsavebox\Reconstruct
 \setbox\Reconstruct=\hbox{\scalebox{.5}{\begin{tikzpicture}
@@ -137,7 +137,7 @@
 
       \node[br,right=3mm] (@) at (@.east) {};
       \node (dataflow) at (@) {\usebox\DataFlow};
-      \node[k] at (@.south) {Data-Flow};
+      \node[k] at (@.south) {Dataflow};
 
       \node[br,right=3mm] (@) at (@.east) {};
       \node (slicing) at (@) {\usebox\Slicing};
@@ -155,12 +155,16 @@
       \node[k] at (@.south) {Output};
       % \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
       \endscope
-   \draw[decorate,decoration={brace,mirror},line cap=round,line join=round] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={node[below] {\includegraphics[height=2\baselineskip]{data/flowR.pdf}}}] ([xshift=1mm,yshift=-6mm]@r);
+   \draw[decorate,decoration={brace,mirror},line cap=round,line join=round] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={coordinate (@flowr-location)}] ([xshift=1mm,yshift=-6mm]@r);
+   \pgfonlayer{background}
+      \node[below] (@flowr) at(@flowr-location) {\includegraphics[height=2\baselineskip]{data/flowR.pdf}};
+      \fill[btdl@color@background,opacity=.5] (@flowr.north east) rectangle (@flowr.south west);
+   \endpgfonlayer
 \end{tikzpicture}}
 \end{lrbox}
 
 \begin{frame}[fragile,c]{}
-\only<3->{\vspace*{-1em}}\only<-2|handout:0>{\vspace*{4em}}\begin{layout-full}\begin{center}%
+\only<2->{\vspace*{-1em}}\only<-1|handout:0>{\vspace*{4em}}\begin{layout-full}\begin{center}%
 \lstfs{9}
 \begin{tikzpicture}
 \node (@) at (0,0) {%
@@ -179,10 +183,9 @@ cat("Product:", prod, "\n")
 \end{minted}
 };
 
-\begin{uncoverenv}<2->
    \node[right=3cm] (@2) at (@.east) {%
 \solsetmintedstyle{plain}
-\AnimateCode{onslide={o8:{7,5,4,3,1},-}, first slide=2,handout={2/1}}
+\AnimateCode{onslide={o8:{7,5,4,3,1},-}, first slide=1,handout={1/1}}
 \begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
 sum  <- 0
 prod <- 1
@@ -198,14 +201,11 @@ cat("Product:", prod, "\n")
 \end{minted}
 \endAnimateCode
    };
-\end{uncoverenv}
-\onslide<2->{
    \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\scriptsize\T{slice(\solGet{linenumbers}{\footnotesize10}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
-}
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
    \node[below=5mm,font=\sbfamily\Large] at(current page.north) {Program-Slicing};
-   \onslide<3->{
+   \onslide<2->{
       \node[above] at(current page.south){\usebox\Overview};
    }
 \end{tikzpicture}
