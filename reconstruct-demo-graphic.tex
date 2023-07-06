@@ -7,7 +7,6 @@
 \input{data/config.tex}
 
 \usepackage[default]{FiraSans}
-\usepackage{FiraMono}
 
 \usepackage{forest}
 
@@ -31,10 +30,10 @@
       gt/left/>,
       x/below/x,
       3/below/3,
-      =/right/=,
+      =/right/{\LeftArrow},
       xl/below/x,
       2/below/2,
-      =b/right/=,
+      =b/right/{\LeftArrow},
       y/below/y,
       mal/right/*,
       4/below/4,
@@ -48,8 +47,8 @@
    \node[above right=-7.5mm,yshift=-2mm,align=left,font=\ttfamily,SoftGray] at(current bounding box.south west) {%
       % everything but an active listing processor :c
       while(\textcolor{BaseGray}{x} > 3) \{\\
-      \qquad \textcolor{BaseGray}{x} = \textcolor{BaseGray}{2}\\
-      \qquad y = 4 * x\\
+      \qquad \textcolor{BaseGray}{x} {\LeftArrow} \textcolor{BaseGray}{2}\\
+      \qquad y {\LeftArrow} 4 * x\\
       \}
    };
 \end{forest}
@@ -63,7 +62,7 @@
    \draw[Link,-Kite,SoftGray] ([xshift=3mm]lt.east) to[out=0,in=180] ++(2cm,5mm) coordinate (@r);
    \node[right=3mm,align=left,font=\ttfamily,BaseGray] at(@r.east) {%
       while(x > 3) \textcolor{SoftGray}{\{}\\
-      \qquad x = 2\\
+      \qquad x {\LeftArrow} 2\\
       \textcolor{SoftGray}{\}}
    };
 \end{tikzpicture}

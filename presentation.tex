@@ -4,6 +4,7 @@
 
 \input{data/config.tex}
 \usepackage[bare]{lib/tikzpingus/tex/tikzpingus}
+\usepackage{forest}
 
 \def\DoTitlepage{}%
 \def\DoEndpage{}%
@@ -41,9 +42,125 @@
 \end{tikzpicture}
 \end{frame}
 
+\def\SupportedTypes{
+   \coordinate (@) at([xshift=-1mm,yshift=-4.5mm]current page.north east);
+   \foreach \i in {PSE2, PSE1, AP SE} {
+      \node[left=1.5mm,fill=BackGray,draw=BackGray,rounded corners=2pt,text=BaseGray] (@) at(@.west) {\tiny\i};
+   }
+}
+
+
+\forestset{T/.style={for tree={font=\ttfamily,align=center,l sep=0pt,l sep-=5mm,child anchor=north}}}
+\newsavebox\ArchitectureBox
+\setbox\ArchitectureBox=\hbox{\tikz[baseline={([yshift=-2mm]current bounding box.center)},scale=1.35]{\draw[rounded corners=.5mm,fill=btdl@color@background,opacity=.8]
+(0,0) -| ++(-6mm,8mm) -- ++(4mm,0) |- ++(2mm,-2mm) coordinate (@) -- cycle
+([yshift=-1mm]@) -- ++(0,1mm) -- ++(-2mm,2mm) -- ++(-1mm,0);}}
+\newsavebox\Parsing
+\setbox\Parsing=\hbox{\scalebox{.5}{\begin{tikzpicture}
+   \foreach[count=\i from 0] \Code in {
+         {1/C,2/A,3/A},
+         {.5/B,1/A,2/A,1/A,1/A},
+         {.5/B,2/A,3/A},
+         {1/A},
+         {},
+         {1/A,2/A,6/A},
+         {1.5/A,1/A,2/A,.5/B,1/A},
+      } {
+         \def\XShift{5}
+         \foreach \CW/\Style in \Code {
+            \ifstrequal{\Style}{B}{\def\RandomSuffix{0}}{\def\RandomSuffix{(rand*0.4mm+0.75mm)}}
+            \pgfmathsetmacro\w{3*\CW mm+\RandomSuffix}
+            \path[\Style] ([yshift=-2.5mm-1cm,xshift=3.25mm+\XShift pt]0,-\i*0.28*10mm+1mm) rectangle ++(\w pt,-1.75mm);
+
+            \pgfmathsetmacro{\XShift}{\XShift+\w pt+1mm}
+            \xdef\XShift{\XShift}
+         }
+      }
+\end{tikzpicture}}}
+\newsavebox\FirstAst
+\setbox\FirstAst=\hbox{\resizebox*!{1.25cm}{\begin{forest}
+   for tree={Blob,edge=Link}
+   [[[][,phantom]][[[][,phantom]][]]]
+\end{forest}}}
+\newsavebox\DataFlow
+\setbox\DataFlow=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+   for tree={Blob,edge=Link}
+   [[[,name=a][,phantom]][,name=d[[,name=b][,phantom]][,name=c]]]
+   \draw[very thick,black,line cap=round] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+\end{forest}}}
+\newsavebox\Slicing
+\setbox\Slicing=\hbox{\resizebox*!{1.25cm}{\color{lightgray!80!black}\begin{forest}
+   for tree={Blob,edge=Link}
+   [[[,name=a][,phantom]][,name=d[[,name=b,ActiveBlob,very thick][,phantom]][,name=c,ActiveBlob,very thick]]]
+   \draw[very thick,black,line cap=round,lightgray!80!black] (a) to[bend right=25] (b) (b) to[bend right=25] (c) (c) to[bend right=25] (d);
+\end{forest}}}
+\newsavebox\Reconstruct
+\setbox\Reconstruct=\hbox{\scalebox{.5}{\begin{tikzpicture}
+   \foreach[count=\i from 0] \Code in {
+         {1/C,2/A,3/A},
+         {.5/B,2/A,3/A},
+         {1/A},
+         {},
+         {1/A,2/A,4/A},
+      } {
+         \def\XShift{5}
+         \foreach \CW/\Style in \Code {
+            \ifstrequal{\Style}{B}{\def\RandomSuffix{0}}{\def\RandomSuffix{(rand*0.4mm+0.75mm)}}
+            \pgfmathsetmacro\w{3*\CW mm+\RandomSuffix}
+            \path[\Style] ([yshift=-2.5mm-1cm,xshift=3.25mm+\XShift pt]0,-\i*0.28*10mm+1mm) rectangle ++(\w pt,-1.75mm);
+
+            \pgfmathsetmacro{\XShift}{\XShift+\w pt+1mm}
+            \xdef\XShift{\XShift}
+         }
+      }
+\end{tikzpicture}}}
+\newsavebox\Overview
+\begin{lrbox}\Overview
+\scalebox{.8}{\begin{tikzpicture}[br/.style={fill=BackGray!80,minimum width=2.5cm,minimum height=1.5cm,signal,signal from=west,signal to=east,signal pointer angle=125},k/.style={below,font=\footnotesize,xshift=-.33mm,color=darkgray},m/.style={above,font=\scriptsize,xshift=-.33mm,color=gray},a/.style={},BaseGray]
+   \tikzset{a/.style={opacity=.45}}
+      \scope[transparency group,a]
+      \node[br] (@) at (0,0) {};
+      \node (file) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+      \node[k] at (@.south) {Input File};
+      \endscope
+
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (r-conv) at (@) {\usebox\Parsing};
+      \node[k] at (@.south) {Parsing};
+      % \onslide<4->{\node[m] at (@.north) {\T{parse}\,\(\to\)\,XML};}
+
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (first-ast) at (@) {\usebox\FirstAst};
+      \node[k] at (@.south) {Normalization};
+      % \onslide<6->{\node[m] at (@.north) {in TypeScript};}
+      \coordinate (@l) at(@.south west);
+
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (dataflow) at (@) {\usebox\DataFlow};
+      \node[k] at (@.south) {Data-Flow};
+
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (slicing) at (@) {\usebox\Slicing};
+      \node[k] at (@.south) {Slicing};
+      % \onslide<9->{\node[m] at (@.north) {Weiser~\cite{weiser_program_1984}};}
+
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (reconstruct) at (@) {\usebox\Reconstruct};
+      \node[k] at (@.south) {Reconstruct};
+      \coordinate (@r) at(@.south east);
+
+      \scope[transparency group,a]
+      \node[br,right=3mm] (@) at (@.east) {};
+      \node (export) at (@) {\rotatebox{-5}{\usebox\ArchitectureBox}\llap{\T{.r\kern8pt}}};
+      \node[k] at (@.south) {Output};
+      % \onslide<9->{\node[m] at (@.north) {Slice,~\ldots};}
+      \endscope
+   \draw[decorate,decoration={brace,mirror},line cap=round,line join=round] ([xshift=-1cm,yshift=-6mm]@l) to[edge node={node[below] {\includegraphics[height=2\baselineskip]{data/flowR.pdf}}}] ([xshift=1mm,yshift=-6mm]@r);
+\end{tikzpicture}}
+\end{lrbox}
 
 \begin{frame}[fragile,c]{}
-\vspace*{4em}\begin{layout-full}\begin{center}%
+\only<3->{\vspace*{-1em}}\only<-2|handout:0>{\vspace*{4em}}\begin{layout-full}\begin{center}%
 \lstfs{9}
 \begin{tikzpicture}
 \node (@) at (0,0) {%
@@ -65,7 +182,7 @@ cat("Product:", prod, "\n")
 \begin{uncoverenv}<2->
    \node[right=3cm] (@2) at (@.east) {%
 \solsetmintedstyle{plain}
-\AnimateCode{onslide={o8:{7,5,4,3,1}}, first slide=2,handout={2/1}}
+\AnimateCode{onslide={o8:{7,5,4,3,1},-}, first slide=2,handout={2/1}}
 \begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
 sum  <- 0
 prod <- 1
@@ -87,17 +204,13 @@ cat("Product:", prod, "\n")
 }
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
-   \node[above=5mm,font=\sbfamily\Large] at(current page.south) {Program-Slicing};
+   \node[below=5mm,font=\sbfamily\Large] at(current page.north) {Program-Slicing};
+   \onslide<3->{
+      \node[above] at(current page.south){\usebox\Overview};
+   }
 \end{tikzpicture}
 \end{center}\end{layout-full}
 \end{frame}
-
-\def\SupportedTypes{
-   \coordinate (@) at([xshift=-1mm,yshift=-4.5mm]current page.north east);
-   \foreach \i in {PSE2, PSE1, AP SE} {
-      \node[left=1.5mm,fill=BackGray,draw=BackGray,rounded corners=2pt,text=BaseGray] (@) at(@.west) {\tiny\i};
-   }
-}
 
 \begin{frame}
 \begin{tikzpicture}[overlay,remember picture]

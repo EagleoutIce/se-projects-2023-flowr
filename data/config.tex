@@ -3,7 +3,7 @@
 \usepackage{tikz}
 \usepackage{fontawesome}
 \usepackage{etoolbox}
-\usetikzlibrary{backgrounds,graphs,arrows.meta}
+\usetikzlibrary{backgrounds,graphs,arrows.meta,decorations.pathreplacing}
 
 \definecolor{BaseGray}{RGB}{66,66,66} % rgb(66,66,66)
 
@@ -124,3 +124,17 @@
  {keywordC: \color{sol@colors@lst@keywordC}\bfseries},%
  {keywordD: \color{sol@colors@lst@keywordC}\bfseries},%
 }
+
+\def\LeftArrow{\text{\BeginAccSupp{method=escape,ActualText={<-}}\(\leftarrow\)\EndAccSupp{}}}
+\def\RightArrow{\text{\BeginAccSupp{method=escape,ActualText={<-}}\(\rightarrow\)\EndAccSupp{}}}
+\def\DoubleLeftArrow{\text{\BeginAccSupp{method=escape,ActualText={<<-}}\(\twoheadleftarrow\)\EndAccSupp{}}}
+\def\DoubleRightArrow{\text{\BeginAccSupp{method=escape,ActualText={<<-}}\(\twoheadrightarrow\)\EndAccSupp{}}}
+\lstset{add to literate={<-}{{{\!\LeftArrow\!}}}2
+   {<<-}{{{\!\DoubleLeftArrow\!}}}2
+   {->}{{{\!\RightArrow\!}}}2
+   {->>}{{{\!\DoubleRightArrow\!}}}2
+}
+
+\RequirePackage{etoolbox,amsmath}
+\RequirePackage[scaled=.95]{FiraMono}
+\RequirePackage{mdsymbol}
