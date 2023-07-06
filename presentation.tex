@@ -41,6 +41,57 @@
 \end{tikzpicture}
 \end{frame}
 
+
+\begin{frame}[fragile,c]{}
+\vspace*{4em}\begin{layout-full}\begin{center}%
+\lstfs{9}
+\begin{tikzpicture}
+\node (@) at (0,0) {%
+\begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
+sum  <- 0
+prod <- 1
+n    <- 10
+
+for(i in 1:(n-1)) {
+   sum  <- sum + i
+   prod <- prod * i
+}
+
+cat("Sum:", /*\T{\only<2->{\textbf}{sum}}*/, "\n")
+cat("Product:", prod, "\n")
+\end{minted}
+};
+
+\begin{uncoverenv}<2->
+   \node[right=3cm] (@2) at (@.east) {%
+\solsetmintedstyle{plain}
+\AnimateCode{onslide={o8:{7,5,4,3,1}}, first slide=2,handout={2/1}}
+\begin{minted}[deletekeywords={sum,prod},escapeinside={/*}{*/}]{R}
+sum  <- 0
+prod <- 1
+n    <- 10
+
+for(i in 1:(n-1)) {
+   sum  <- sum + i
+   prod <- prod * i
+}
+
+cat("Sum:", sum, "\n")
+cat("Product:", prod, "\n")
+\end{minted}
+\endAnimateCode
+   };
+\end{uncoverenv}
+\onslide<2->{
+   \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\scriptsize\T{slice(\solGet{linenumbers}{\footnotesize10}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
+}
+\end{tikzpicture}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[above=5mm,font=\sbfamily\Large] at(current page.south) {Program-Slicing};
+\end{tikzpicture}
+\end{center}\end{layout-full}
+\end{frame}
+
 \def\SupportedTypes{
    \coordinate (@) at([xshift=-1mm,yshift=-4.5mm]current page.north east);
    \foreach \i in {PSE2, PSE1, AP SE} {

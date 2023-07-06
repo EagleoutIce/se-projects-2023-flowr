@@ -97,3 +97,30 @@
    B/.style={},
    C/.style={Line-Of-Text=SoftGray}
 }
+
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+\usepackage{etoolbox,tabularx,array}
+\makeatletter
+\appto\input@path{{lib/color-palettes/}{lib/sopra-collection/sopra-listings}{lib/code-animation/}}
+
+\usepackage{lib/color-palettes/color-palettes}
+\colorlet{paletteA}{BaseGray}
+\colorlet{paletteB}{BaseGray}
+\colorlet{paletteC}{BaseGray}
+\colorlet{paletteD}{BaseGray}
+\usepackage[cpalette,encoding,defaultfont,fakeminted]{lib/sopra-collection/sopra-listings/sopra-listings}
+
+\solLoadLanguage{R}
+\solsetmintedstyle{plain}
+\usepackage{lib/code-animation/code-animation}
+\SetCodeAnimationFadeOutMixin{!10!btdl@color@background}
+\CodeAnimationsWithFadeOut
+
+\SolDefineStyles{%
+ {keywordA: \color{sol@colors@lst@keywordA}\bfseries},%
+ {keywordB: \color{sol@colors@lst@keywordB}\bfseries},%
+ {keywordC: \color{sol@colors@lst@keywordC}\bfseries},%
+ {keywordD: \color{sol@colors@lst@keywordC}\bfseries},%
+}
