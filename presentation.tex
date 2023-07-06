@@ -9,32 +9,44 @@
 \def\DoEndpage{}%
 
 \title{SE-Projekte im WS 23/24 --- flowR}
-\subtitle{Statische Datenflusss-Analyse von R-Code}
+\subtitle{Static Program-Slicing with flowR}
 \author{Florian Sihler}
 \date{20.07.2023}
 
 \newsavebox\HappyPingu
 \savebox\HappyPingu{\tikz{\pingu[eyes wink,right wing wave,:mix-all=30!btdl@color@background]}}
+\newsavebox\FlowR
+\savebox\FlowR{\usebeamerfont{title}\sbfamily\includegraphics[height=2.5\baselineskip]{data/flowR.pdf}}
 
 \begin{document}
 
 \begin{frame}
 \begin{tikzpicture}[overlay,remember picture]
-   \node[below left=3mm] (@flowr) at(current page.north east) {%
-      \includegraphics[width=2.5cm]{data/flowR.pdf}
-   };
+%    \node[below left=3mm] (@flowr) at(current page.north east) {%
+%    \includegraphics[width=2.5cm]{data/flowR.pdf}
+%     };
    % fake opacity
-   \fill[btdl@color@background,opacity=.5] (@flowr.north east) rectangle (@flowr.south west);
-   \node[below right,xshift=5mm] (@) at(current page.west) {%
-      \usebeamerfont{title}Titel%
+   % \fill[btdl@color@background,opacity=.5] (@flowr.north east) rectangle (@flowr.south west);
+   \node[right,xshift=5mm] (@) at(current page.west) {%
+      \usebeamerfont{title}\sbfamily Static Program-Slicing with%
    };
-   \node[below right,font=\itshape\sbfamily,SoftGray] at (@.south west) {%
-      im Wintersemester 2023/24%
+   \node[above right,yshift=-.482\ht\FlowR] (@flowr) at(@.base east) {\usebox\FlowR};
+   \fill[btdl@color@background,opacity=.3] (@flowr.north east) rectangle (@flowr.south west);
+
+   \node[below right,yshift=1.25mm,font=\itshape\sbfamily,SoftGray] at (@.south west) {%
+      in the winter semester 2023/24%
    };
-   \node[above left=2.5mm,scale=.2] (@) at(current page.south east) {\quad\usebox\HappyPingu};
+   \node[above left=2.5mm,yshift=-.65mm,scale=.2] (@) at(current page.south east) {\quad\usebox\HappyPingu};
    \node[above right=2.5mm,opacity=.55,scale=.2] at(current page.south west) {\includegraphics[height=\dimexpr0.7\ht\HappyPingu+0.7\dp\HappyPingu]{data/sp.pdf}};
 \end{tikzpicture}
 \end{frame}
+
+\def\SupportedTypes{
+   \coordinate (@) at([xshift=-1mm,yshift=-4.5mm]current page.north east);
+   \foreach \i in {PSE2, PSE1, AP SE} {
+      \node[left=1.5mm,fill=BackGray,draw=BackGray,rounded corners=2pt,text=BaseGray] (@) at(@.west) {\tiny\i};
+   }
+}
 
 \begin{frame}
 \begin{tikzpicture}[overlay,remember picture]
@@ -43,17 +55,18 @@
       \includegraphics[width=.65\paperwidth]{build/visualizer-demo-graphic.pdf}
    };
    \node[below right=5mm,font=\sbfamily\Large] (@title) at(current page.north west) {%
-      Interaktive Visualisierung von Datenflussgraphen%
+      Interactive Visualization of Dataflow-Graphs%
    };
-   \node[below right,yshift=-5mm,text width=.33\paperwidth] at(@title.south west) {%
+   \node[right=5mm,text width=.33\paperwidth] at(current page.west) {%
       \begin{itemize}
          \itemsep7.5pt
-         \item Interessante
-         \item Fakten
-         \item In
-         \item Bulletpoints
+         \item 2\,--\,4 Students
+         \item Web-Development
+         \item Concepts:\\
+            \textit{Dataflow-Graphs},\\\textit{Graph-Layouting},\\\textit{User Interfaces}
       \end{itemize}
    };
+   \SupportedTypes
 \end{tikzpicture}
 \end{frame}
 
@@ -63,16 +76,17 @@
       \includegraphics[width=.65\paperwidth]{build/reconstruct-demo-graphic.pdf}
    };
    \node[above left=5mm,yshift=-1.5mm,font=\sbfamily\Large] (@title) at(current page.south east) {%
-      Rekonstruktion von Programm-Ausschnitten%
+      Reconstruction of Selected Program-Snippets%
    };
-   \node[above left,yshift=5mm,text width=.55\paperwidth] at(@title.north east) {%
+   \node[above left,yshift=5mm,text width=.6\paperwidth] at(@title.north east) {%
       \begin{itemize}
-         \item Richtig
-         \item Gute
-         \item Bulletpoints mit vielen Informationen
-         \item Super Duper
+         \item 1\,--\,3 Students
+         \item Existing Implementation in \href{https://www.typescriptlang.org/}{TypeScript}
+         \item Concepts:\\
+            \textit{Abstract Syntax Trees}, \textit{Parsers}, \textit{Pretty Printing}
       \end{itemize}
    };
+   \SupportedTypes
 \end{tikzpicture}
 \end{frame}
 \end{document}
