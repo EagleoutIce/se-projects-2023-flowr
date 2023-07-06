@@ -14,10 +14,6 @@ jobs:
       with:
         lfs: true
         submodules: true
-    - name: Setup Python environment for sltx
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
     - name: get pu for preview
       run: sudo apt install poppler-utils
     - name: Compile the PDF
