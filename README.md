@@ -38,7 +38,7 @@ Um die Arbeit mit diesen Graphen zu erleichtern sollen zwei bis vier Studierende
 
 [<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-reconstruct-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
 
-Das Slicing in *flowR* selektiert eine Menge an Knoten des [Abstrakten Syntaxbaums](https://en.wikipedia.org/wiki/Abstract_syntax_tree), die für den Slice enthalten sein müssen. Eine bestehende Implementation in [TypeScript](https://www.typescriptlang.org/) versucht bereits auf Basis dieser Knoten, ausführbaren Code zu generieren, der den Wert der gewählten Variable berechnet und so nah wie möglich am ursprünglichen Layout des Programms ist. Die Ergebnisse sind dabei aber oft noch unzureichend, da beispielsweise eine Umformatierung des Codes stattfindet.
+Das Slicing in *flowR* selektiert eine Menge an Knoten des [abstrakten Syntaxbaums](https://en.wikipedia.org/wiki/Abstract_syntax_tree), die für den Slice enthalten sein müssen. Eine bestehende Implementation in [TypeScript](https://www.typescriptlang.org/) versucht bereits auf Basis dieser Knoten, ausführbaren Code zu generieren, der den Wert der gewählten Variable berechnet und so nah wie möglich am ursprünglichen Layout des Programms ist. Die Ergebnisse sind dabei aber oft noch unzureichend, da beispielsweise eine Umformatierung des Codes stattfindet.
 Die Studierenden können im Rahmen des Projektes die bestehende Implementation erweitern oder eine neue Implementation entwerfen um die Qualität der generierten Ausgabe zu verbessern.
 
 ## Project Details (English)
