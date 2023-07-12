@@ -17,7 +17,7 @@ The presentation can be found [here](https://media.githubusercontent.com/media/E
 
 ## Erklärung des Projekts (Deutsch)
 
-Program Slicing is eine wichtige Technik um Menschen beim Verständnis von Programmcode zu unterstützen.
+Program Slicing ist eine wichtige Technik um Menschen beim Verständnis von Programmcode zu unterstützen.
 Ein Program Slicer identifiziert für eine gegebene Variable die Teile des Programms, die einen Einfluss auf den Wert dieser Variable an der gegebenen Position haben können.
 Das *flowR* Projekt konstruiert hierfür einen Datenflussgraphen, berechnet den Slice durch die Reduktion auf ein Erreichbarkeits-Problem und hat unter anderem das Ziel, ausführbaren Code zu erzeugen, der den Wert der gewählten Variable berechnet.
 Um die Arbeit mit und die Ausgabe von *flowR* zu verbessern, gibt es zwei mögliche Projekte die hier angegangen werden können und die im Folgenden kurz beschrieben werden.
