@@ -4,13 +4,8 @@
 
 *The project is planned for the Winter semester 2023/24 at ulm university.*
 
-- [Presentation to pitch my SE project(s) for flowR](#presentation-to-pitch-my-se-projects-for-flowr)
-  - [Erklärung des Projekts (Deutsch)](#erklärung-des-projekts-deutsch)
-    - [Interaktive Visualisierung von Datenflussgraphen](#interaktive-visualisierung-von-datenflussgraphen)
-    - [Layout erhaltende Rekonstruktion des Slices](#layout-erhaltende-rekonstruktion-des-slices)
-  - [Project Details (English)](#project-details-english)
-    - [Interactive Visualization of Dataflow-Graphs](#interactive-visualization-of-dataflow-graphs)
-    - [Layout-preserving slice reconstruction](#layout-preserving-slice-reconstruction)
+- [Erklärung des Projekts (Deutsch)](#erklärung-des-projekts-deutsch)
+- [Project Details (English)](#project-details-english)
 
 
 The presentation can be found [here](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf):
