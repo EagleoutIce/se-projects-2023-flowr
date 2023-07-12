@@ -5,9 +5,8 @@ exclude:
   - "lib/"
 header_pages: []
 
-author:
-  name: Florian Sihler
-  email: "florian.sihler@uni-ulm.de"
+author: Florian Sihler
+email: "florian.sihler@uni-ulm.de"
 
 minima:
   skin: classic
