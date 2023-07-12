@@ -34,7 +34,7 @@ Um die Arbeit mit diesen Graphen zu erleichtern sollen zwei bis vier Studierende
 
 ![Studierende](https://badgen.net/static/Studierende/1%20-%203%20Studierende/blue?icon=codebeat&label=) ![Kontext](https://badgen.net/static/Kontext/Generierung%20von%20ausführbarem%20Code/cyan?icon=bitcoin-lightning&label=) ![Ziel](https://badgen.net/static/Target/TypeScript%20Implementation/grey?icon=typescript&label=) ![AP SE](https://badgen.net/static/APSE/AP%20SE/green?label=) ![PSE1](https://badgen.net/static/PSE1/PSE1/green?label=) ![PSE2](https://badgen.net/static/PSE2/PSE2/green?label=)
 
-[<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-visualizer-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
+[<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-reconstruct-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
 
 Das Slicing in *flowR* selektiert eine Menge an Knoten des [Abstrakten Syntaxbaums](https://en.wikipedia.org/wiki/Abstract_syntax_tree), die für den Slice enthalten sein müssen. Eine bestehende Implementation in [TypeScript](https://www.typescriptlang.org/) versucht bereits auf Basis dieser Knoten, ausführbaren Code zu generieren, der den Wert der gewählten Variable berechnet und so nah wie möglich am ursprünglichen Layout des Programms ist. Die Ergebnisse sind dabei aber oft noch unzureichend, da beispielsweise eine Umformatierung des Codes stattfindet.
 Die Studierenden können im Rahmen des Projektes die bestehende Implementation erweitern oder eine neue Implementation entwerfen um die Qualität der generierten Ausgabe zu verbessern.
@@ -59,7 +59,7 @@ Hence, two to four students should develop an interactive web-based visualizatio
 
 ![students](https://badgen.net/static/students/1%20-%203%20students/blue?icon=codebeat&label=) ![context](https://badgen.net/static/Context/generate%20executable%20code/cyan?icon=bitcoin-lightning&label=) ![Ziel](https://badgen.net/static/Target/TypeScript%20implementation/grey?icon=typescript&label=) ![AP SE](https://badgen.net/static/APSE/AP%20SE/green?label=) ![PSE1](https://badgen.net/static/PSE1/PSE1/green?label=) ![PSE2](https://badgen.net/static/PSE2/PSE2/green?label=)
 
-[<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-visualizer-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
+[<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-reconstruct-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
 
 *flowR* slices by ultimately selecting a subset of nodes of the [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the program.
 There is already an existing implementation in [TypeScript](https://www.typescriptlang.org/) that tries to generate executable code which calculates the value of the selected variable while preserving the original layout of the program.
