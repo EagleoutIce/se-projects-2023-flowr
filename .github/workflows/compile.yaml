@@ -27,6 +27,8 @@ jobs:
     - name: build the preview
       run: |
         pdftoppm -png -f 1 -l 1 ./build/presentation.pdf preview
+        pdftoppm -png -f 1 -l 1 ./build/visualizer-demo-graphic.pdf preview-visualizer
+        pdftoppm -png -f 1 -l 1 ./build/reconstruct-demo-graphic.pdf preview-reconstruct
     - name: Commit
       run: |
         cp build/*.pdf ./
