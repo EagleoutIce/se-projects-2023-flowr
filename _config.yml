@@ -1,6 +1,6 @@
 theme: minima
 
-title: "SE Projects for flowR"
+title: "SE projects for flowR (WS23/24, Ulm University)"
 exclude:
   - "lib/"
 header_pages:
