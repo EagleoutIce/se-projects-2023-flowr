@@ -1,4 +1,6 @@
 theme: minima
 
 title: "SE Projects for flowR"
+exclude:
+  - "lib/"
 header_pages:
