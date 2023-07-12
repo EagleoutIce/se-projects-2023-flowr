@@ -3,4 +3,14 @@ theme: minima
 title: "SE projects for flowR (WS23/24, Ulm University)"
 exclude:
   - "lib/"
-header_pages:
+header_pages: []
+
+author:
+  name: Florian Sihler
+  email: "florian.sihler@uni-ulm.de"
+
+minima:
+  skin: classic
+  date_format: "%b %-d, %Y"
+  social_links:
+    - { platform: github,  user_url: "https://github.com/EagleoutIce" }

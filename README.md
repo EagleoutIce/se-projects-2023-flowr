@@ -1,11 +1,13 @@
-# Presentation to pitch my SE project(s) for [flowR](https://github.com/Code-Inspect/flowr)
-
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![Build the slides](https://github.com/EagleoutIce/se-projects-2023-flowr/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/se-projects-2023-flowr/actions/workflows/compile.yaml)
 
 *The project is planned for the Winter semester 2023/24 at ulm university.*
 
 - [Erklärung des Projekts (Deutsch)](#erklärung-des-projekts-deutsch)
+  - [Interaktive Visualisierung von Datenflussgraphen](#interaktive-visualisierung-von-datenflussgraphen)
+  - [Layout erhaltende Rekonstruktion des Slices](#layout-erhaltende-rekonstruktion-des-slices)
 - [Project Details (English)](#project-details-english)
+  - [Interactive Visualization of Dataflow-Graphs](#interactive-visualization-of-dataflow-graphs)
+  - [Layout-preserving slice reconstruction](#layout-preserving-slice-reconstruction)
 
 
 The presentation can be found [here](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf):
