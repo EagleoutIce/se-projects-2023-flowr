@@ -7,7 +7,7 @@
   - [Layout erhaltende Rekonstruktion des Slices](#layout-erhaltende-rekonstruktion-des-slices)
 - [Project Details (English)](#project-details-english)
   - [Interactive Visualization of Dataflow-Graphs](#interactive-visualization-of-dataflow-graphs)
-  - [Layout-preserving slice reconstruction](#layout-preserving-slice-reconstruction)
+  - [Layout-Preserving Slice Reconstruction](#layout-preserving-slice-reconstruction)
 
 
 The presentation can be found [here](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf):
@@ -57,7 +57,7 @@ To improve working with and the output of *flowR*, I propose two possible projec
 *flowR*'s dataflow graphs scale quickly in size, rendering static visualization with tools like [Mermaid](https://mermaid.live) infeasible.
 Hence, two to four students should develop an interactive web-based visualization for *flowR* that displays the produced dataflow graphs, allowing the user to perform operations like filtering and hiding nodes and subgraphs.
 
-### Layout-preserving slice reconstruction
+### Layout-Preserving Slice Reconstruction
 
 ![students](https://badgen.net/static/students/1%20-%203%20students/blue?icon=codebeat&label=) ![context](https://badgen.net/static/Context/generate%20executable%20code/cyan?icon=bitcoin-lightning&label=) ![Ziel](https://badgen.net/static/Target/TypeScript%20implementation/grey?icon=typescript&label=) ![AP SE](https://badgen.net/static/APSE/AP%20SE/green?label=) ![PSE1](https://badgen.net/static/PSE1/PSE1/green?label=) ![PSE2](https://badgen.net/static/PSE2/PSE2/green?label=)
 
