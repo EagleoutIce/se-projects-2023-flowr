@@ -95,7 +95,9 @@
    % code sub-styles
    A/.style={Line-Of-Text=SoftTextGray},
    B/.style={},
-   C/.style={Line-Of-Text=SoftGray}
+   C/.style={Line-Of-Text=SoftGray},
+   path image shift/.style={},
+   path image/.style 2 args={path picture={\node at ([path image shift]path picture bounding box.center) {\includegraphics[width=#2]{#1}};}},
 }
 
 \usepackage[english]{babel}
@@ -138,3 +140,5 @@
 \RequirePackage{etoolbox,amsmath}
 \RequirePackage[scaled=.95]{FiraMono}
 \RequirePackage{mdsymbol}
+
+\def\mail#1{\href{mailto:#1}{#1}}

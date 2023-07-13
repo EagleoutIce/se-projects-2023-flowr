@@ -13,3 +13,6 @@
 [submodule "lib/color-palettes"]
 	path = lib/color-palettes
 	url = https://github.com/EagleoutIce/color-palettes.git
+[submodule "lib/fancyqr"]
+	path = lib/fancyqr
+	url = https://github.com/EagleoutIce/fancyqr.git

@@ -5,6 +5,7 @@
 \input{data/config.tex}
 \usepackage[bare]{lib/tikzpingus/tex/tikzpingus}
 \usepackage{forest}
+\usepackage{fancyqr}
 
 \def\DoTitlepage{}%
 \def\DoEndpage{}%
@@ -35,8 +36,8 @@
    \fill[btdl@color@background,opacity=.3] (@flowr.north east) rectangle (@flowr.south west);
 
    \node[below right,yshift=1.25mm,font=\itshape\sbfamily,SoftGray,align=left] at (@.south west) {%
-      in the winter semester 2023/24\\%
-      Florian Sihler%
+      in the winter semester 2023/24\\[-.33pt]%
+      by Florian Sihler%
    };
 
    \node[above left=2.5mm,yshift=-.65mm] (@) at(current page.south east) {\href{https://github.com/EagleoutIce/tikzpingus}{\scalebox{0.2}{\usebox\HappyPingu}}};
@@ -215,6 +216,8 @@ cat("Product:", prod, "\n")
 \end{center}\end{layout-full}
 \end{frame}
 
+\def\FirstTitle{Interactive Visualization of Dataflow-Graphs}
+
 \begin{frame}
 \begin{tikzpicture}[overlay,remember picture]
    % padding comes from preview border
@@ -222,7 +225,7 @@ cat("Product:", prod, "\n")
       \includegraphics[width=.65\paperwidth]{build/visualizer-demo-graphic.pdf}
    };
    \node[below right=5mm,font=\sbfamily\Large] (@title) at(current page.north west) {%
-      Interactive Visualization of Dataflow-Graphs%
+      \FirstTitle%
    };
    \node[right=5mm,text width=.33\paperwidth] at(current page.west) {%
       \begin{itemize}
@@ -238,13 +241,15 @@ cat("Product:", prod, "\n")
 \end{tikzpicture}
 \end{frame}
 
+\def\SecondTitle{Layout-Preserving Slice Reconstruction}
+
 \begin{frame}
 \begin{tikzpicture}[overlay,remember picture]
    \node[below right] at (current page.north west) {%
       \includegraphics[width=.65\paperwidth]{build/reconstruct-demo-graphic.pdf}
    };
    \node[above left=5mm,yshift=-1.5mm,font=\sbfamily\Large] (@title) at(current page.south east) {%
-   Layout-Preserving Slice Reconstruction%
+      \SecondTitle%
    };
    \node[above left,yshift=5mm,text width=.6\paperwidth] at(@title.north east) {%
       \begin{itemize}
@@ -258,4 +263,28 @@ cat("Product:", prod, "\n")
    \SupportedTypes
 \end{tikzpicture}
 \end{frame}
+
+\newsavebox\InfoQr
+\definecolor{QrShade}{RGB}{210, 194, 251}
+\setbox\InfoQr=\hbox{\fancyqr[l color=SoftGray!60!BaseGray!85!QrShade,r color=BaseGray!85!QrShade,gradient angle=45,height=3cm,level=H]{https://eagleoutice.github.io/se-projects-2023-flowr/}}
+
+\begin{frame}[plain]
+   \begin{tikzpicture}[overlay,remember picture]
+      \node[below right=5mm,font=\sbfamily\Large] (@) at(current page.north west) {Static Program Slicing with flow\kern-.25pt\textsl{R}};
+
+      \draw[SoftGray,rounded corners=4pt,path image={data/florian-sihler-compressed.jpg}{3cm}] ([shift={(-5mm,5mm)}]current page.south east) rectangle ++(-3cm,4cm) coordinate[yshift=-4cm] (@img);
+
+      \node[above right=5mm,align=left,text width=\linewidth] at(current page.west) {%
+         \begin{itemize}
+            \itemsep14pt
+            \item \FirstTitle
+            \item \SecondTitle
+         \end{itemize}
+      };
+
+      \node[above right=5mm] at(current page.south west) {\usebox\InfoQr};
+      \node[above left,yshift=-2mm,font=\footnotesize,align=right] at(@img) {{\sbfamily Florian Sihler}\\\mail{florian.sihler@uni-ulm.de}};
+   \end{tikzpicture}
+\end{frame}
+
 \end{document}
