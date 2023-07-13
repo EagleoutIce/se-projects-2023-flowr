@@ -10,7 +10,7 @@
 \def\DoEndpage{}%
 
 \title{SE-Projekte im WS 23/24 --- flowR}
-\subtitle{Static Program-Slicing with flowR}
+\subtitle{Static Program Slicing with flowR}
 \author{Florian Sihler}
 \date{20.07.2023}
 
@@ -29,7 +29,7 @@
    % fake opacity
    % \fill[btdl@color@background,opacity=.5] (@flowr.north east) rectangle (@flowr.south west);
    \node[right,xshift=5mm] (@) at(current page.west) {%
-      \usebeamerfont{title}\sbfamily Static Program-Slicing with%
+      \usebeamerfont{title}\sbfamily Static Program Slicing with%
    };
    \node[above right,yshift=-.482\ht\FlowR] (@flowr) at(@.base east) {\usebox\FlowR};
    \fill[btdl@color@background,opacity=.3] (@flowr.north east) rectangle (@flowr.south west);
@@ -204,7 +204,7 @@ cat("Product:", prod, "\n")
    \draw[-Kite,line cap=round] ([xshift=5mm]@.east) to[edge node={node[above] {\scriptsize\T{slice(\solGet{linenumbers}{\scriptsize\T{10}}, \textbf{sum})}}}] ([xshift=-5mm]@2.west);
 \end{tikzpicture}
 \begin{tikzpicture}[overlay,remember picture]
-   \node[below=5mm,font=\sbfamily\Large] at(current page.north) {Program-Slicing};
+   \node[below=5mm,font=\sbfamily\Large] at(current page.north) {Program Slicing};
    \onslide<2->{
       \node[above] at(current page.south){\usebox\Overview};
    }
