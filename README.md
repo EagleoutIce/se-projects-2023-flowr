@@ -63,7 +63,7 @@ Hence, two to four students should develop an interactive web-based visualizatio
 
 [<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-reconstruct-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
 
-*flowR* slices by ultimately selecting a subset of nodes of the [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the program.
+*flowR* slices by selecting a subset of nodes of the [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the program.
 There is already an existing implementation in [TypeScript](https://www.typescriptlang.org/) that tries to generate executable code which calculates the value of the selected variable while preserving the original layout of the program.
 However, the results are often unsatisfactory, for example, due to the generated code being often reformatted or no longer executable.
 Within the project, the students can choose to reuse the existing implementation or to create a new one, to improve the quality of the generated output.
