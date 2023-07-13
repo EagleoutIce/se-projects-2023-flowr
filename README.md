@@ -38,7 +38,7 @@ Um die Arbeit mit diesen Graphen zu erleichtern sollen zwei bis vier Studierende
 
 [<img src="https://github.com/EagleoutIce/se-projects-2023-flowr/blob/gh-pages/preview-reconstruct-1.png?raw=true" width="400"/>](https://media.githubusercontent.com/media/EagleoutIce/se-projects-2023-flowr/gh-pages/presentation.pdf)
 
-Das Slicing in *flowR* selektiert eine Menge an Knoten des [abstrakten Syntaxbaums](https://en.wikipedia.org/wiki/Abstract_syntax_tree), die für den Slice enthalten sein müssen. Eine bestehende Implementation in [TypeScript](https://www.typescriptlang.org/) versucht bereits auf Basis dieser Knoten, ausführbaren Code zu generieren, der den Wert der gewählten Variable berechnet und so nah wie möglich am ursprünglichen Layout des Programms ist. Die Ergebnisse sind dabei aber oft noch unzureichend, da beispielsweise eine Umformatierung des Codes stattfindet.
+Das Slicing in *flowR* selektiert eine Menge an Knoten des [abstrakten Syntaxbaums](https://en.wikipedia.org/wiki/Abstract_syntax_tree), die für den Slice enthalten sein müssen. Eine bestehende Implementation in [TypeScript](https://www.typescriptlang.org/) versucht bereits auf Basis dieser Knoten, ausführbaren Code zu generieren, der den Wert der gewählten Variable berechnet und so nah wie möglich am ursprünglichen Layout des Programms ist. Die Ergebnisse sind dabei aber oft noch unzureichend, da beispielsweise eine Umformatierung des Codes stattfindet oder der Code nicht mehr ausgeführt werden kann.
 Die Studierenden können im Rahmen des Projektes die bestehende Implementation erweitern oder eine neue Implementation entwerfen um die Qualität der generierten Ausgabe zu verbessern.
 
 ## Project Details (English)
@@ -65,5 +65,5 @@ Hence, two to four students should develop an interactive web-based visualizatio
 
 *flowR* slices by ultimately selecting a subset of nodes of the [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the program.
 There is already an existing implementation in [TypeScript](https://www.typescriptlang.org/) that tries to generate executable code which calculates the value of the selected variable while preserving the original layout of the program.
-However, the results are often unsatisfactory, for example, due to the generated code being often reformatted.
+However, the results are often unsatisfactory, for example, due to the generated code being often reformatted or no longer executable.
 Within the project, the students can choose to reuse the existing implementation or to create a new one, to improve the quality of the generated output.
