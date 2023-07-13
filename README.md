@@ -1,6 +1,6 @@
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![Build the slides](https://github.com/EagleoutIce/se-projects-2023-flowr/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/se-projects-2023-flowr/actions/workflows/compile.yaml)
 
-*The project is planned for the Winter semester 2023/24 at ulm university.*
+*The project is planned for the Winter semester 2023/24 at ulm university (see [here](https://www.uni-ulm.de/in/fakultaet/studium/inf-mi/studienplanung-se/apse/)).*
 
 - [Erklärung des Projekts (Deutsch)](#erklärung-des-projekts-deutsch)
   - [Interaktive Visualisierung von Datenflussgraphen](#interaktive-visualisierung-von-datenflussgraphen)
