@@ -34,9 +34,11 @@
    \node[above right,yshift=-.482\ht\FlowR] (@flowr) at(@.base east) {\usebox\FlowR};
    \fill[btdl@color@background,opacity=.3] (@flowr.north east) rectangle (@flowr.south west);
 
-   \node[below right,yshift=1.25mm,font=\itshape\sbfamily,SoftGray] at (@.south west) {%
-      in the winter semester 2023/24%
+   \node[below right,yshift=1.25mm,font=\itshape\sbfamily,SoftGray,align=left] at (@.south west) {%
+      in the winter semester 2023/24\\%
+      Florian Sihler%
    };
+
    \node[above left=2.5mm,yshift=-.65mm] (@) at(current page.south east) {\href{https://github.com/EagleoutIce/tikzpingus}{\scalebox{0.2}{\usebox\HappyPingu}}};
    \node[above right=2.5mm,opacity=.55] at(current page.south west) {\href{https://www.uni-ulm.de/in/sp/}{\includegraphics[height=\dimexpr0.13999\ht\HappyPingu+0.13999\dp\HappyPingu]{data/sp.pdf}}};
 \end{tikzpicture}
